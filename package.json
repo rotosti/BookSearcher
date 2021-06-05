@@ -1,0 +1,21 @@
+{
+  "name": "booksearcher",
+  "version": "1.0.0",
+  "description": "A book searching app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rotosti/BookSearcher.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rotosti/BookSearcher/issues"
+  },
+  "homepage": "https://github.com/rotosti/BookSearcher#readme"
+}
