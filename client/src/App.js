@@ -1,10 +1,22 @@
-import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Search from './pages/Search';
+
 
 function App() {
   return (
-    <>
-    <h1>Hello</h1>
-    </>
+    <Router>
+      <div>
+        <Switch>
+          <Route>
+            <Search exact path={['/', '/search']}/>
+          </Route>
+          <Route>
+            
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
