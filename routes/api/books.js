@@ -7,3 +7,8 @@ router.route('/')
 
 router.route('/:id')
     .delete(controller.removeSaved);
+
+router.route('/search/:query')
+    .get(controller.getBooks);
+
+module.exports = router;
