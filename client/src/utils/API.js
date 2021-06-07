@@ -10,8 +10,10 @@ export default {
     removeSavedBook: (id) => {
         return axios.delete('/api/books/' + id);
     },
-    searchGoogleForBooks: (search) => {
-        search.trim();
-        return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}+intitle`)
+    searchGoogleForBooks: async (search) => {
+        console.log(search);
+        search = search.trim().replace(' ', '+').toLowerCase();
+        console.log(search);
+        return await axios.get('/api/books/search/' + search);
     }
 }
