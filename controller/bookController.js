@@ -1,4 +1,6 @@
+const axios = require('axios');
 const database = require('../models');
+require('dotenv').config();
 
 module.exports = {
     getAllSaved: (req, res) => {
@@ -19,5 +21,13 @@ module.exports = {
             .then(book => book.remove())
             .then(book => res.json(book))
             .catch(err => res.status(422).json(err))
+    },
+    getBooks: (req, res) => {
+        console.log(req.params.query);
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${req.params.query}:keyes&key=${process.env.GOOGLE_API}`)
+        .then(data => res.json(data.data.items))
+        .catch(err => {
+            console.log(err);
+            res.status(422).json(err)});
     }
 }
