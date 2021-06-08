@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Saved from './pages/Saved';
 import Search from './pages/Search';
 
 
@@ -8,12 +9,8 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route>
-            <Search exact path={['/', '/search']}/>
-          </Route>
-          <Route>
-            
-          </Route>
+          <Route exact path={['/', '/search']} component={Search} />
+          <Route exact path={['/saved']} component={Saved} />
         </Switch>
       </div>
     </Router>
