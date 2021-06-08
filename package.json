@@ -2,6 +2,7 @@
   "name": "booksearcher",
   "version": "1.0.0",
   "description": "A book searching app",
+  "homepage": "https://reactgooglebooksearchwoot.herokuapp.com/",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
