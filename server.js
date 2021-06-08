@@ -15,7 +15,9 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/googlebooks');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/googlebooks').catch((err)=> {
+console.log("MONGO ERR!!!!!!!", err)
+})
 
 app.listen(PORT, () => {
     console.log(`Active port: ${PORT}`);

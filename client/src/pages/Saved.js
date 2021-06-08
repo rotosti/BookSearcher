@@ -14,7 +14,6 @@ function Saved() {
     const getBooksInDB = async () => {
         await API.getSavedBooks()
             .then(results => {
-                console.log(results);
                 setBookList(results.data);
             })
     };
