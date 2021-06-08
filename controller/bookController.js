@@ -19,10 +19,8 @@ module.exports = {
                 link:body.volumeInfo.infoLink
             })
             .then(data => {
-                console.log(data)
                 res.json(data)})
             .catch(err => {
-                console.log(err)
                 res.status(422).json(err)})
     },
     removeSaved: (req, res) => {
@@ -33,13 +31,10 @@ module.exports = {
             .catch(err => res.status(422).json(err))
     },
     getBooks: (req, res) => {
-        
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=${req.params.query}:keyes&key=${process.env.GOOGLE_API}`)
         .then(data => {
-            
             res.json(data.data.items)})
         .catch(err => {
-            
             res.status(422).json(err)});
     }
 }
