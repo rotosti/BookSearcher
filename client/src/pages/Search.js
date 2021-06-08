@@ -6,41 +6,42 @@ import SearchResultContainer from '../components/SearchResultContainer'
 import API from '../utils/API';
 
 function Search() {
-    // const [search, setSearch] = useState();
-    const [bookList, setBookList] = useState();
+    const [bookList, setBookList] = useState([]);
 
     const handleSubmit = async (event) => {
-        
-        event.preventDefault();
-        console.log(event.target.searchField.value)
-        // setSearch(event.target.searchField.value);
-        // console.log(search);
+        event.preventDefault();  
         await getGoogleBooks(event.target.searchField.value);
-        // if (search !== '') {
-        //   getGoogleBooks(search);
-        // }
-        
+    }
+
+    const handleSave = async (book) => {
+        API.saveBook(book)
+          .then(savedBook => {
+            const filteredList = bookList.filter((book) => savedBook.data.title !== book.volumeInfo.title);
+            setBookList(filteredList);
+          })
     }
 
     const getGoogleBooks = async (search) => {
       await API.searchGoogleForBooks(search)
         .then(data => {
-          setBookList(data);
-          console.log(bookList)});
-
-    }
+          setBookList([...data.data]);
+          });
+    };
 
     return (
-        <>
+        <div className="container">
           <Nav />
           <Hero />
           <BookSearch
             handleSubmit={handleSubmit}
           />
-          {/* {bookList &&
-            <SearchResultContainer bookList={bookList}/>
-          } */}
-        </>
+          {bookList.length > 0 &&
+            <SearchResultContainer
+              handleSave={handleSave}
+              bookList={bookList}/>
+          }
+
+        </div>
     );
 }
 

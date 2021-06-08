@@ -9,11 +9,21 @@ module.exports = {
             .then(data => res.json(data))
             .catch(err => res.status(422).json(err))
     },
-    saveBook: (req, res) => {
+    saveBook: ({body}, res) => {
         database.Book
-            .create(req.body)
-            .then(data => res.json(data))
-            .catch(err => res.status(422).json(err))
+            .create({
+                title:body.volumeInfo.title,
+                authors:body.volumeInfo.authors,
+                description:body.volumeInfo.description,
+                image:body.volumeInfo.imageLinks.thumbnail,
+                link:body.volumeInfo.infoLink
+            })
+            .then(data => {
+                console.log(data)
+                res.json(data)})
+            .catch(err => {
+                console.log(err)
+                res.status(422).json(err)})
     },
     removeSaved: (req, res) => {
         database.Book
@@ -23,11 +33,13 @@ module.exports = {
             .catch(err => res.status(422).json(err))
     },
     getBooks: (req, res) => {
-        console.log(req.params.query);
+        
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=${req.params.query}:keyes&key=${process.env.GOOGLE_API}`)
-        .then(data => res.json(data.data.items))
+        .then(data => {
+            
+            res.json(data.data.items)})
         .catch(err => {
-            console.log(err);
+            
             res.status(422).json(err)});
     }
 }

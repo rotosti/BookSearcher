@@ -1,17 +1,18 @@
 import React from 'react';
 
-function BookCard(book) {
+function BookCard({book, handleSave}) {
     return (
-    <div className="card mb-3">
-        <div className="row g-0">
-            <div className="col-md-4">
-            {/* <img src="" alt=""> */}
+    <div className="col-12">
+        <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div className="col p-4 d-flex flex-column position-static">
+                <h3 className="mb-0">{book.volumeInfo.title}</h3>
+                <div className="mb-1 text-muted">{book.volumeInfo.authors}</div>
+                <p className="card-text mb-auto">{book.volumeInfo.description}</p>
+                <button><a href={book.volumeInfo.infoLink} className="p-2">View</a></button>
+                <button className="mt-3" onClick={() => handleSave(book)}>Save</button>
             </div>
-            <div className="col-md-8">
-            <div className="card-body">
-                <h5 className="card-title">{book.title}</h5>
-                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
+            <div className="col-auto d-none d-lg-block">
+                <img src={book.volumeInfo.imageLinks.thumbnail} width="200" height="250" alt='a book cover' />
             </div>
         </div>
     </div>
